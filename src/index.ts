@@ -1,6 +1,3 @@
-export const sum = (a: number, b: number) => {
-  if ('development' === process.env.NODE_ENV) {
-    console.log('boop');
-  }
-  return a + b;
-};
+export { default as TemplateArtist } from './core/Template';
+export { default as TemplateArtistQuestions } from './core/Questions';
+export { default as TemplateArtistValidation } from './core/Validation';

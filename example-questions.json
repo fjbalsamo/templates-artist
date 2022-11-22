@@ -1,0 +1,79 @@
+[
+  {
+    "type": "input",
+    "message": "Type your name",
+    "name": "name",
+    "default": "Jhon",
+    "validation": {
+      "opts": [
+        "required"
+      ],
+      "messageError": "your name must be have 3 chars minimun"
+    }
+  },
+  {
+    "type": "checkbox",
+    "message": "Confirm this action",
+    "name": "confirm",
+    "default": false
+  },
+  {
+    "type": "number",
+    "message": "Write your age",
+    "name": "yearsOld",
+    "default": 18,
+    "validation": {
+      "opts": [
+        "gte",
+        18
+      ],
+      "messageError": "your age is required"
+    }
+  },
+  {
+    "type": "single-select",
+    "message": "choice a food",
+    "name": "food",
+    "choices": [
+      {
+        "name": "pizza",
+        "value": "pizza"
+      },
+      {
+        "name": "spagetti",
+        "value": "spagetti"
+      }
+    ],
+    "default": "pizza"
+  },
+  {
+    "type": "multi-select",
+    "name": "cars",
+    "message": "choice any cars",
+    "choices": [
+      {
+        "name": "camaro",
+        "value": "camaro"
+      },
+      {
+        "name": "mustang",
+        "value": "mustang"
+      }
+    ],
+    "default": [
+      "camaro"
+    ]
+  },
+  {
+    "type": "input",
+    "name": "ide",
+    "message": "type your IDE",
+    "default": "vsc",
+    "validation": {
+      "opts": [
+        "required"
+      ],
+      "messageError": "dlfldfkd"
+    }
+  }
+]
