@@ -1,4 +1,4 @@
-/* eslint no-use-before-define: 0 */  // --> OFF
+/* eslint no-use-before-define: 0 */ // --> OFF
 
 type InputType =
   | 'input'
@@ -20,14 +20,14 @@ export type ValidateOptions =
   | ['property', string]
   | ['inc', string | number]
   | ['ninc', string | number]
-  | ['btw', number, number, 'l' | 'r' | 'lr' | undefined];
+  | ['btw', number, number, 'l' | 'r' | 'lr' | 'none'];
 
 interface TemplateQuestion {
   type: InputType;
   name: string;
   message: string;
   validation?: {
-    opts: ValidateOptions;
+    opts: ValidateOptions | ['required'];
     messageError: string;
   };
 }
@@ -59,7 +59,7 @@ interface TemplateArtistMultiSelect<T> extends TemplateQuestion {
   choices: Array<TemplateArtistChoice<T>>;
 }
 
-interface TemplateArtistChoice<T> {
+interface TemplateArtistChoice<T extends any> {
   name: string;
   value: T;
 }

@@ -43,7 +43,7 @@ export default class Validation {
     value: any,
     left: any,
     right: any,
-    include?: 'l' | 'r' | 'lr'
+    include: 'l' | 'r' | 'lr' | 'none'
   ): boolean {
     switch (include) {
       case 'l':
@@ -78,7 +78,12 @@ export default class Validation {
 
     switch (key) {
       case 'btw':
-        return Validation.checkIsBetween(value, first, second, third);
+        return Validation.checkIsBetween(
+          value,
+          first,
+          second,
+          third === undefined ? 'none' : third
+        );
       case 'edw':
         return Validation.checkEndsWith(value, first);
       case 'eq':

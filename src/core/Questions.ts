@@ -23,7 +23,7 @@ export default class Questions {
     const questions: TemplateArtistQuestion[] = [
       {
         type: 'input',
-        message: 'Type your name',
+        message: 'This is an input text',
         name: 'name',
         default: 'Jhon',
         validation: {
@@ -33,13 +33,13 @@ export default class Questions {
       },
       {
         type: 'checkbox',
-        message: 'Confirm this action',
+        message: 'This is a confirmation checkbox',
         name: 'confirm',
         default: false,
       },
       {
         type: 'number',
-        message: 'Write your age',
+        message: 'This is an input number',
         name: 'yearsOld',
         default: 18,
         validation: {
@@ -49,7 +49,7 @@ export default class Questions {
       },
       {
         type: 'single-select',
-        message: 'choice a food',
+        message: 'This is a single select input',
         name: 'food',
         choices: [
           { name: 'pizza', value: 'pizza' },
@@ -60,23 +60,13 @@ export default class Questions {
       {
         type: 'multi-select',
         name: 'cars',
-        message: 'choice any cars',
+        message: 'This is a multiple select input',
         choices: [
           { name: 'camaro', value: 'camaro' },
           { name: 'mustang', value: 'mustang' },
         ],
         default: ['camaro'],
       },
-      {
-        type: "input",
-        name: "ide",
-        message: "type your IDE",
-        default: "vsc",
-        validation: {
-          opts: ['required'],
-          messageError: "dlfldfkd"
-        }
-      }
     ];
     Questions.generateQuestions({
       questions,
