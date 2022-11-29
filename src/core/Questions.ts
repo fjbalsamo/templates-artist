@@ -30,6 +30,18 @@ export default class Questions {
           opts: ['required'],
           messageError: 'your name must be have 3 chars minimun',
         },
+        render: "text"
+      },
+      {
+        type: 'input',
+        message: 'This is a Description text',
+        name: 'description',
+        default: 'about me',
+        validation: {
+          opts: ['required'],
+          messageError: 'your name must be have 3 chars minimun',
+        },
+        render: "textarea"
       },
       {
         type: 'checkbox',

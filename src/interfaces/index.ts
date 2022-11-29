@@ -35,6 +35,7 @@ interface TemplateQuestion {
 interface TemplateArtistInput extends TemplateQuestion {
   type: 'input';
   default?: string;
+  render?: "text" | "textarea"
 }
 
 interface TemplateArtistNumber extends TemplateQuestion {

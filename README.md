@@ -13,7 +13,7 @@ yarn add template-artist # using yarn
 ## Usage
 
 ```typescript
-import { TemplateArtist } from 'template-artist';
+import { TemplateArtist } from 'templates-artist';
 
 TemplateArtist.createApp({
   answers: {
@@ -73,7 +73,7 @@ mkdir test-template && cd ./test-template && npm init -y && npm install template
 /*
 This script will generate a json file inside the root directory of the app with your questions called template-questions.json.
 */
-const { TemplateArtistQuestions } = require('template-artist');
+const { TemplateArtistQuestions } = require('templates-artist');
 (() => {
   TemplateArtistQuestions.generateQuestions({
     questions: [
