@@ -77,5 +77,9 @@ export default class Helpers {
     HBS.registerHelper('ninc', function(v: any, c: any) {
       return !Validation.checkIsIncluded(v, c);
     });
+
+    HBS.registerHelper('pkg', function(value: string) {
+      return value;
+    });
   }
 }

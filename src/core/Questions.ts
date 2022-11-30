@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { TemplateArtistQuestion } from '../interfaces';
+import { TemplateArtistQuestion, ValidateOptions } from '../interfaces';
 import Validation from './Validation';
 
 function checkQuestions(questions: TemplateArtistQuestion[]): never | void {
@@ -136,4 +136,56 @@ export default class Questions {
     });
     return errors;
   }
+
+  public static questionsToPromts(questions: TemplateArtistQuestion[]) {
+    return questions.map(q => {
+      return {
+        name: q.name,
+        type: convertType(q.type),
+        message: q.message,
+        validate: valitationToFunction({ validator: q.validation }),
+        default: q.default,
+        choices: (q as any)?.choices,
+        render: convertRender(q),
+      }
+    })
+  }
+}
+
+function convertType(type: Pick<TemplateArtistQuestion, 'type'>['type']) {
+  if (type == 'single-select')
+    return 'list'
+  if(type == 'multi-select')
+    return 'checkbox';
+  if(type == 'checkbox')
+    return 'confirm';
+  return type;
+}
+
+function convertRender(question: TemplateArtistQuestion) {
+  if (question.type == 'single-select' || question.type == 'multi-select') {
+    return 'select'
+  }
+  if(question.type == 'input') {
+    return question.render || 'text'
+  }
+  return question.type;
+}
+
+function valitationToFunction({ validator }: {
+  validator?: {
+    opts: ValidateOptions | ['required'];
+    messageError: string;
+  };
+} = {}): (value: any) => boolean | string {
+  if (!validator) return () => true;
+  const opts = validator.opts
+  if (opts[0] == 'required') {
+    return (name) => {
+      if (name.length > 0)
+        return true;
+      return validator.messageError;
+    };
+  }
+  return (_value) => true;
 }
