@@ -43,7 +43,7 @@ export default class Validation {
     value: any,
     left: any,
     right: any,
-    include: 'l' | 'r' | 'lr' | 'none'
+    include: 'l' | 'r' | 'lr' | 'none' = 'none'
   ): boolean {
     switch (include) {
       case 'l':

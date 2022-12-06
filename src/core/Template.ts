@@ -3,6 +3,8 @@ import path from 'path';
 import fs from 'fs';
 import File from './File';
 import Helpers from './Helpers';
+import { TemplateArtistQuestion } from '../interfaces';
+import Questions from './Questions';
 
 function checkAnswers({
   answers,
@@ -67,5 +69,22 @@ export default class Template {
       });
       return { statusCode: 200, errors: [] };
     }
+  }
+
+  public static test({ answers, questions, templatePath }: {
+    answers: Record<string, any>;
+    questions: TemplateArtistQuestion[];
+    templatePath: string;
+  }) {
+    const results = Questions.matchWitchAnswers({
+      answers,
+      questions,
+    })
+    const readFiles = File.readFiles(templatePath);
+
+    Helpers.init();
+    const errors = checkAnswers({ answers, readFiles });
+
+    return [...results, ...errors];
   }
 }

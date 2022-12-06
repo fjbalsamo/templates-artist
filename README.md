@@ -91,3 +91,28 @@ const { TemplateArtistQuestions } = require('templates-artist');
   });
 })();
 ```
+
+Test your template and questions and answers
+
+```javascript
+/*
+This script will test your template, test your answers and questions match
+*/
+const { TemplateArtistQuestions } = require('templates-artist');
+(() => {
+  const questions = TemplateArtistQuestions.readQuestions(
+    // path to questions file
+  );
+  const errors = TemplateArtist.test({
+    answers,
+    questions,
+    templatePath: 'templateFolderPath'
+  });
+
+  if (errors.length == 0) {
+    console.log('good!', errors);
+  } else {
+    console.error('something wnet wrong!', errors);
+  }
+})();
+```

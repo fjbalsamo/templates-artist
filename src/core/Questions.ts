@@ -127,6 +127,12 @@ export default class Questions {
         value,
         opts: validation?.opts,
       });
+      if(!answers[name]) {
+        errors.push({
+          messageError: `Missing answer for ${name}`,
+          name,
+        });
+      }
       if (!check) {
         errors.push({
           messageError: validation?.messageError || `${name} is wrong`,
@@ -134,6 +140,15 @@ export default class Questions {
         });
       }
     });
+    const questionNames = questions.map(q => q.name)
+    Object.keys(answers).forEach(answer => {
+      if(!questionNames.includes(answer)) {
+        errors.push({
+          messageError: `Missing question for ${answer}`,
+          name: answer,
+        });
+      }
+    })
     return errors;
   }
 
