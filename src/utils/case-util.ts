@@ -42,3 +42,8 @@ export function dotCase(value: string): string {
   const str = value.toLowerCase();
   return anyCase(str, '.');
 }
+
+export function pathCase(value: string): string {
+  const str = value.toLowerCase();
+  return anyCase(str, '/');
+}

@@ -2,7 +2,7 @@
 
 Create applications using templates
 
-## Istallation
+## Installation
 
 ```bash
 npm install template-artist # using npm

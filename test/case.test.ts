@@ -3,6 +3,7 @@ import {
   dotCase,
   kebabCase,
   pascalCase,
+  pathCase,
   snakeCase,
   trainCase,
 } from '../src/utils/case-util';
@@ -36,5 +37,10 @@ describe('Case Util', () => {
   it('train-case', () => {
     const res = trainCase('my text');
     expect(res).toEqual('my-text');
+  });
+
+  it('pathCase', () => {
+    const res = pathCase('my Text');
+    expect(res).toEqual('my/text');
   });
 });

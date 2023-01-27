@@ -4,6 +4,7 @@ import {
   dotCase,
   kebabCase,
   pascalCase,
+  pathCase,
   snakeCase,
   trainCase,
 } from '../utils/case-util';
@@ -80,6 +81,10 @@ export default class Helpers {
 
     HBS.registerHelper('pkg', function(value: string) {
       return value;
+    });
+
+    HBS.registerHelper('pathCase', function(value: string) {
+      return pathCase(value);
     });
   }
 }
