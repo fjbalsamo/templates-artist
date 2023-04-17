@@ -86,5 +86,9 @@ export default class Helpers {
     HBS.registerHelper('pathCase', function(value: string) {
       return pathCase(value);
     });
+
+    HBS.registerHelper('ife', function(varname: any, value: any, truthyValue, falsyValue: any) {
+      return varname == value ? truthyValue : falsyValue;
+    });
   }
 }
