@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import path from 'path';
 import fs from 'fs';
-import File from './File';
+import File, { ReadFile } from './File';
 import Helpers from './Helpers';
 import { TemplateArtistQuestion } from '../interfaces';
 import Questions from './Questions';
@@ -11,19 +11,21 @@ function checkAnswers({
   readFiles,
 }: {
   answers: Record<string, any>;
-  readFiles: Array<{ source: string; filePath: string }>;
+  readFiles: ReadFile[];
 }): string[] {
   const errors: string[] = [];
 
-  readFiles.forEach(({ filePath, source }) => {
-    try {
-      const filePathCompile = Handlebars.compile(filePath, { strict: true });
-      const sourceCompile = Handlebars.compile(source, { strict: true });
-      filePathCompile(answers);
-      sourceCompile(answers);
-    } catch (error) {
-      const hbsException = error as Handlebars.Exception;
-      errors.push(hbsException.message);
+  readFiles.forEach(({ filePath, source, isBin }) => {
+    if(!isBin){
+      try {
+        const filePathCompile = Handlebars.compile(filePath, { strict: true });
+        const sourceCompile = Handlebars.compile(source, { strict: true });
+        filePathCompile(answers);
+        sourceCompile(answers);
+      } catch (error) {
+        const hbsException = error as Handlebars.Exception;
+        errors.push(hbsException.message);
+      }
     }
   });
   return errors;
@@ -47,13 +49,16 @@ export default class Template {
     if (errors.length > 0) {
       return { statusCode: 400, errors };
     } else {
-      readFiles.forEach(({ filePath, source }) => {
+      readFiles.forEach(({ filePath, source, isBin }) => {
         const notCompiledFullPath = path.join(destinationApp, `./${filePath}`);
 
         let compiledFullPath = '';
 
-        const contentCompiler = Handlebars.compile(source, { strict: true });
-        const content = contentCompiler(answers);
+        let content = source;
+        if(!isBin) {
+          const contentCompiler = Handlebars.compile(source, { strict: true });
+          content = contentCompiler(answers);
+        }
 
         if (notCompiledFullPath.includes('{{')) {
           const pathCompiler = Handlebars.compile(notCompiledFullPath);
