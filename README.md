@@ -62,7 +62,7 @@ App Created
 file generated
 
 ```html
-Hello world! My name is {{name}}, and my lastname is {{lastname}}
+Hello world! My name is John, and my lastname is Doe
 ```
 
 > **Note:** more info in https://handlebarsjs.com/guide/
