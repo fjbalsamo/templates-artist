@@ -59,6 +59,12 @@ App Created
 │   └── file2.cpp
 ```
 
+file generated
+
+```html
+Hello world! My name is {{name}}, and my lastname is {{lastname}}
+```
+
 > **Note:** more info in https://handlebarsjs.com/guide/
 
 ## Create questions within the same template
@@ -66,14 +72,19 @@ App Created
 Create a simple nodejs app, install "template-artist" and finally create "template" folder with html file inside
 
 ```bash
-mkdir test-template && cd ./test-template && npm init -y && npm install template-artist && touch index.js && mkdir ./template && echo "{{name}}" > ./template/index.html.hbs
+mkdir test-template && cd ./test-template
+npm init -y
+npm install template-artist
+touch index.js
+mkdir ./template
+echo "{{name}}" > ./template/index.html.hbs
 ```
 
 ```javascript
 /*
 This script will generate a json file inside the root directory of the app with your questions called template-questions.json.
 */
-const { TemplateArtistQuestions } = require('templates-artist');
+import { TemplateArtistQuestions } from 'templates-artist';
 (() => {
   TemplateArtistQuestions.generateQuestions({
     questions: [
@@ -88,6 +99,7 @@ const { TemplateArtistQuestions } = require('templates-artist');
         },
       },
     ],
+    jsonFileName: 'template-questions'
   });
 })();
 ```
@@ -98,7 +110,7 @@ Test your template and questions and answers
 /*
 This script will test your template, test your answers and questions match
 */
-const { TemplateArtistQuestions } = require('templates-artist');
+import { TemplateArtistQuestions, TemplateArtist } from 'templates-artist';
 (() => {
   const questions = TemplateArtistQuestions.readQuestions(
     // path to questions file
@@ -116,3 +128,10 @@ const { TemplateArtistQuestions } = require('templates-artist');
   }
 })();
 ```
+
+## Authors
+
+- Franco - _Initial work_ - [fjbalsamo](https://github.com/fjbalsamo)
+- Victor - [vicmans](https://github.com/vicmans)
+
+See also the list of [contributors](https://github.com/fjbalsamo/templates-artist/contributors) who participated in this project.
